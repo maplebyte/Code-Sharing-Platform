@@ -3,30 +3,42 @@ package platform.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import platform.entities.CodePart;
-import platform.models.CodePartDTO;
-import platform.models.mappers.CodePartMapper;
-import platform.repositories.HtmlMockRepository;
+import platform.entities.CodeSnippet;
+import platform.models.CodeSnippetDTO;
+import platform.models.mappers.CodeSnippetMapper;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 @Service
 public class HtmlService {
 
-    private final HtmlMockRepository htmlRepository;
-    private final CodePartMapper mapper;
+    private static final String DATE_FORMAT = "yyyy/dd/MM HH:mm:ss";
+
+    private final CodeSnippetMapper mapper;
+    private CodeSnippet code;
 
     @Autowired
-    public HtmlService(HtmlMockRepository htmlRepository, CodePartMapper mapper) {
-        this.htmlRepository = htmlRepository;
+    public HtmlService(CodeSnippetMapper mapper) {
         this.mapper = mapper;
+        this.code = new CodeSnippet();
     }
 
-    public String getCodePart() {
-        return htmlRepository.find().getCode();
+    public CodeSnippetDTO getCodeSnippet() {
+        CodeSnippetDTO codeSnippetDTO = mapper.codePartToCodePartDTO(code);
+        LocalDateTime localDateTime = LocalDateTime.now();
+        String date = localDateTime.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
+        codeSnippetDTO.setDate(date);
+        return codeSnippetDTO;
     }
 
-    public CodePartDTO getApiCode() {
-        CodePart code = htmlRepository.find();
-        return mapper.codePartToCodePartDTO(code);
+    public void postSnippet(CodeSnippetDTO codeSnippetDTO) {
+        String incomingCode = codeSnippetDTO.getCode();
+        if(Objects.isNull(code)) {
+            throw new NullPointerException();
+        }
+        code.setCode(incomingCode);
     }
 
 }

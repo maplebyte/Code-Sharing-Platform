@@ -1,13 +1,13 @@
 package platform.controllers;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import platform.models.CodePartDTO;
+import org.springframework.web.bind.annotation.*;
+import platform.models.CodeSnippetDTO;
 import platform.services.HtmlService;
 
 @RestController
@@ -22,10 +22,23 @@ public class APIController {
     }
 
     @GetMapping(value = "/api/code", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CodePartDTO> getApiCode() {
-        CodePartDTO codePartDTO = htmlService.getApiCode();
-        log.info("Api code: {}", codePartDTO);
-        return new ResponseEntity<>(codePartDTO, HttpStatus.OK);
+    public ResponseEntity<CodeSnippetDTO> getApiCode() {
+        CodeSnippetDTO codeSnippetDTO = htmlService.getCodeSnippet();
+        log.info("Api code: {}", codeSnippetDTO);
+        return new ResponseEntity<>(codeSnippetDTO, HttpStatus.OK);
+    }
+
+
+    @PostMapping(value = "/api/code/new", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<EmptyJSONResponse> postNewSnippet(@RequestBody CodeSnippetDTO codeSnippetDTO) {
+        htmlService.postSnippet(codeSnippetDTO);
+        return new ResponseEntity<>(new EmptyJSONResponse(), HttpStatus.OK);
+    }
+
+    // need to return empty JSON from post method in APIController (task requirement)
+    @JsonSerialize
+    static
+    class EmptyJSONResponse {
     }
 
 }

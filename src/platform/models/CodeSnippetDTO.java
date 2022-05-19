@@ -9,9 +9,11 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CodePartDTO {
+public class CodeSnippetDTO {
 
     @NotNull
     private String code;
+
+    private String date;
 
 }
