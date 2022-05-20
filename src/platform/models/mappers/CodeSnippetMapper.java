@@ -4,6 +4,9 @@ import lombok.Data;
 import org.springframework.stereotype.Component;
 import platform.entities.CodeSnippet;
 import platform.models.CodeSnippetDTO;
+import platform.utils.DateFormatUtil;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 @Data
 @Component
@@ -17,6 +20,10 @@ public class CodeSnippetMapper {
 
     public CodeSnippetDTO codePartToCodePartDTO(CodeSnippet codeSnippet) {
         CodeSnippetDTO codeSnippetDTO = new CodeSnippetDTO();
+        if(Objects.nonNull(codeSnippet.getDate())) {
+            String date = codeSnippet.getDate().format(DateTimeFormatter.ofPattern(DateFormatUtil.DATE_FORMAT));
+            codeSnippetDTO.setDate(date);
+        }
         codeSnippetDTO.setCode(codeSnippet.getCode());
         return codeSnippetDTO;
     }

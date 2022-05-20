@@ -6,8 +6,11 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import platform.models.CodeSnippetDTO;
 import platform.services.HtmlService;
+
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -23,19 +26,34 @@ public class WebController {
 
     @GetMapping(value = "/code", produces = MediaType.TEXT_HTML_VALUE)
     public String getStartCode(Model model) {
-        CodeSnippetDTO code = htmlService.getCodeSnippet();
+        CodeSnippetDTO code = htmlService.getStartCodeSnippet();
         log.info("Got code {}", code);
         model.addAttribute("code_snippet", code.getCode());
         model.addAttribute("load_date", code.getDate());
-        //TODO rename
         return "codeStart";
     }
 
     @GetMapping(value = "/code/new", produces = MediaType.TEXT_HTML_VALUE)
     public String getNewCode(Model model) {
         model.addAttribute("start_phrase", START_PHRASE);
-        //TODO rename
         return "codeNew";
+    }
+
+    @GetMapping(value = "/code/{id}", produces = MediaType.TEXT_HTML_VALUE)
+    public String getApiCode(Model model, @PathVariable Long id) {
+        CodeSnippetDTO codeSnippetDTO = htmlService.getCodeSnippetById(id);
+        log.info("Api code: {}", codeSnippetDTO);
+        model.addAttribute("code_snippet", codeSnippetDTO.getCode());
+        model.addAttribute("load_date", codeSnippetDTO.getDate());
+        return "codeStart";
+    }
+
+    @GetMapping(value = "/code/latest", produces = MediaType.TEXT_HTML_VALUE)
+    public String getLatestSnippets(Model model) {
+        List<CodeSnippetDTO> codeSnippetDTO = htmlService.getLatestSnippets();
+        log.info("Api code: {}", codeSnippetDTO);
+        model.addAttribute("latestcode", codeSnippetDTO);
+        return "codeLatest";
     }
 
 }
