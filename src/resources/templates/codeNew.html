@@ -1,12 +1,41 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html lang="en" class="h-100">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Create</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create new</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
-<body>
-<textarea id="code_snippet" th:utext="${start_phrase}"> </textarea>
-<button id="send_snippet" type="submit" onclick="send()">Submit</button>
+<body class="h-100 text-center text-white bg-dark">
+<div class="d-flex cover-container w-200 h-100 flex-column">
+
+    <main>
+        <div class="container mt-5">
+            <div class="row p-2">
+                <div class="col-12">
+                    <h3>Just enter your code</h3>
+                </div>
+            </div>
+            <div class="row">
+                <textarea rows="10" cols="50" id="code_snippet"> Code </textarea>
+                <p class="lead mt-3">
+                    <button class="btn btn-lg btn btn-outline-dark fw-bold border-white bg-white" id="send_snippet" type="submit" onclick="send()">Submit.</button>
+                </p>
+                <p class="lead">
+                    <a href="/" class="btn btn-lg btn btn-outline-dark fw-bold border-white bg-white">
+                        Back.
+                    </a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-auto text-white-50">
+        <p>Source code of this by link <a href="https://getbootstrap.com/" class="text-white">on GitHub</a>.</p>
+    </footer>
+
+</div>
 <script src="/static/script.js"></script>
 </body>
 </html>

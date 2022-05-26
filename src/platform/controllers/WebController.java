@@ -56,4 +56,9 @@ public class WebController {
         return "codeLatest";
     }
 
+    @GetMapping(value = "/", produces = MediaType.TEXT_HTML_VALUE)
+    public String getStartedPage() {
+        return "index";
+    }
+
 }
