@@ -30,7 +30,6 @@ public class APIController {
         return new ResponseEntity<>(codeSnippetDTO, HttpStatus.OK);
     }
 
-
     @PostMapping(value = "/api/code/new", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, String>> postNewSnippet(@RequestBody CodeSnippetDTO codeSnippetDTO) {
         Long savedId = htmlService.postSnippet(codeSnippetDTO);

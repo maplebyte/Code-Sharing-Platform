@@ -16,7 +16,6 @@ import java.util.List;
 @Slf4j
 public class WebController {
 
-    private final String START_PHRASE = "// Write your code here";
     private final HtmlService htmlService;
 
     @Autowired
@@ -34,8 +33,7 @@ public class WebController {
     }
 
     @GetMapping(value = "/code/new", produces = MediaType.TEXT_HTML_VALUE)
-    public String getNewCode(Model model) {
-        model.addAttribute("start_phrase", START_PHRASE);
+    public String getNewCode() {
         return "codeNew";
     }
 
