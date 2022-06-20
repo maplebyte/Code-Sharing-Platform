@@ -12,11 +12,10 @@ version of a code-sharing platform.
 * [Spring Boot](https://spring.io/projects/spring-boot)
 * [Spring Data JPA](https://spring.io/projects/spring-data-jpa)
 * [Lombok](https://projectlombok.org/)
+* [Bootstrap 5](https://getbootstrap.com/) (and basic topics in Web-programming such as HTML, CSS, and JS)
 
 #### Database:
 * [PostgreSQL](https://www.postgresql.org/)
 
 #### Build Tool:
 * [Gradle](https://gradle.org/)
-
-WIP
