@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="h-100">
+<html lang="en" class="h-100" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -8,7 +8,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 <body class="h-100 text-center text-white bg-dark">
-<div class="d-flex cover-container w-200 h-100 flex-column">
+<div class="d-flex cover-container w-200 h-100  p-3 mx-auto flex-column">
+
+
+    <header class="mb-auto">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="float-md-start mb-0">Code Sharing Platform</h3>
+                </div>
+            </div>
+        </div>
+    </header>
 
     <main>
         <div class="container mt-5">
@@ -18,7 +29,7 @@
                 </div>
             </div>
             <div class="row">
-                <textarea rows="10" cols="50" id="code_snippet"> Code </textarea>
+                <textarea rows="10" cols="50" id="code_snippet" placeholder="// Write your code here"></textarea>
                 <p class="lead mt-3">
                     <button class="btn btn-lg btn btn-outline-dark fw-bold border-white bg-white" id="send_snippet" type="submit" onclick="send()">Submit.</button>
                 </p>
@@ -32,10 +43,12 @@
     </main>
 
     <footer class="mt-auto text-white-50">
-        <p>Source code of this by link <a href="https://getbootstrap.com/" class="text-white">on GitHub</a>.</p>
+        <p>Source code of this by link <a href="https://github.com/ValeriaPiont/Code-Sharing-Platform" class="text-white">on GitHub</a>.</p>
     </footer>
 
 </div>
+
 <script src="/static/script.js"></script>
+
 </body>
 </html>
